@@ -58,6 +58,14 @@ Final values are all 1
 dfs[1]
 
 
+'''Graph
+'''
+
+st.subheader('A graph ')
+dist = pd.DataFrame(dfs[0])
+st.line_chart(dist)
+
+
 
 # to merge the data into one, must reaname columns so they align
 for df in dfs :
