@@ -104,6 +104,7 @@ X = data.drop('Label', axis=1).copy()
 X_train
 
 y_train
+st.line_chart(y_train)
 
 # X_train.shape <-- 10185 rows × 187 columns
 
