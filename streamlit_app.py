@@ -90,8 +90,15 @@ X = data.drop('Label', axis=1).copy()
 # use 70% of data, and a test set that has the other 30%
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7, random_state=1)
 
+y = data['Label'].copy()
+X = data.drop('Label', axis=1).copy()
+
+'''
+# Training Data
+'''
+
 X_train
 
-
+X_train
 
 
