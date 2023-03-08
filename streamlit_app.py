@@ -81,3 +81,17 @@ Includes both Normal and Abnormal ECG data
 data
 
 
+y = data['Label'].copy()
+X = data.drop('Label', axis=1).copy()
+
+# X <-- if print will see last column dropped
+# y <-- if print will see the last column labels
+
+# use 70% of data, and a test set that has the other 30%
+X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7, random_state=1)
+
+X_train
+
+
+
+
