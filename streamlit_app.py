@@ -39,4 +39,14 @@ with data:
 # list of data frames, loading in both normal and abnormal data
 # x changes between the data paths (2 different data frames)
 dfs = [pd.read_csv('ptbdb_' + x + '.csv') for x in ['normal', 'abnormal']]
+'''
+# Normal Dataset:
+Final values are all 0
+'''
 dfs[0]
+
+'''
+# Abnormal Dataset:
+Final values are all 1
+'''
+dfs[1]
