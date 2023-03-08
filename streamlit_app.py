@@ -99,6 +99,68 @@ X = data.drop('Label', axis=1).copy()
 
 X_train
 
-X_train
+y_train
+
+# X_train.shape <-- 10185 rows × 187 columns
+
+
+
+inputs = tf.keras.Input(shape=(X_train.shape[1],))
+
+# gru adds an extra dimension --> tf.expand_dims(X_train,axis=2).shape
+expand = tf.expand_dims(inputs, axis=2)
+
+# gru -- gating mechanism in recurrent neural networks, takes in multiple values for each
+# return sequences will return matrix of all vectors so must be flattened
+gru = tf.keras.layers.GRU(256, return_sequences=True)(expand)
+flatten = tf.keras.layers.Flatten()(gru)
+
+# only outputting one value (sigmoid value between zero and one)
+# if goes over 0.5 then is abnormal heartbeat
+# if under 0.5 then is normal heartbeat
+outputs = tf.keras.layers.Dense(1, activation='sigmoid')(flatten)
+
+
+# model = tf.keras.Model(inputs=inputs, outputs=outputs)
+
+# print(model.summary())
+
+# adam optimizer
+# using accuracy and auc to see how well model does in each class
+model.compile(
+    optimizer='adam',
+    loss='binary_crossentropy',
+    metrics=[
+        'accuracy',
+        tf.keras.metrics.AUC(name='auc')
+    ]
+)
+
+# going to store resilts in history
+# hold 20% of data to validate model with a batch size of 32
+# EarlyStopping 
+# patience value is how many epochs willing to wait to validate model -- ensures don't overfit
+# so as soon as epochs starts to go up it restores best weights
+history = model.fit(
+    X_train,
+    y_train,
+    validation_split=0.2,
+    batch_size=32,
+    epochs=100,
+    callbacks=[
+        tf.keras.callbacks.EarlyStopping(
+            monitor='val_loss',
+            patience=5,
+            restore_best_weights=True
+        )
+    ]
+)
+
+# results will return 3 values: loss, accuracy, auc
+results = model.evaluate(X_test, y_test, verbose=0)
+
+# results at first index is accuracy, 2nd index is auc
+print("Test Accuracy: {:.2f}%".format(results[1] * 100))
+print("     Test AUC: {:.4f}".format(results[2]))
 
 
