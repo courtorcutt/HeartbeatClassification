@@ -41,8 +41,8 @@ Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
 #section for reading in the csv file
 with data:
   st.title('Data')
-  st.write('The client has the ability to change the forecast dates or use a different csv file with  different data so that the model can be used in the future.')  
-  uploaded_file = st.file_uploader("Then please upload the CSV file to start:", type = ["csv"])
+  st.write('Upload heart rate data.')  
+  uploaded_file = st.file_uploader("Upload in CSV format:", type = ["csv"])
   if uploaded_file is not None:
     with st.beta_expander("Details about upload"):
         st.write(type(uploaded_file))
