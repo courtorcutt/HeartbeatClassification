@@ -2,8 +2,6 @@ import math
 import pandas as pd
 import streamlit as st
 import numpy as np
-# use to get training test sets
-from sklearn.model_selection import train_test_split
 
 # Creating sections to organize site
 data = st.beta_container()
@@ -38,4 +36,7 @@ with data:
     st.write(df)
 
 
-
+# list of data frames, loading in both normal and abnormal data
+# x changes between the data paths (2 different data frames)
+dfs = [pd.read_csv('ptbdb_' + x + '.csv') for x in ['normal', 'abnormal']]
+dfs[0]
