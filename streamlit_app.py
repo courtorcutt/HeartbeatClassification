@@ -2,6 +2,10 @@ import math
 import pandas as pd
 import streamlit as st
 import numpy as np
+import tensorflow as tf
+
+# use to get training test sets
+from sklearn.model_selection import train_test_split
 
 # Creating sections to organize site
 data = st.beta_container()
