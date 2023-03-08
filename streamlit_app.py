@@ -84,10 +84,6 @@ data
 ''' 
 # Graph
 '''
-stw = pd.read_csv("ptbdb_normal.csv")
-stw_chart = plt.gca()
-st.line_chart(stw_chart,str, x=stw.Height, y=stw.Height, width=500, height=500, use_container_width=True)
-
 
 y = data['Label'].copy()
 X = data.drop('Label', axis=1).copy()
